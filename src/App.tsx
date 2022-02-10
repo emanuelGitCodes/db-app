@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Box from '@mui/material/Box'
+// import './App.css';
+// import Test from './components/test-ts';
+import UserPage from './components/page';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box
+      component="form"
+      sx={{ backgroundColor: '#F39189', }} // css styling
+      // mt={2}
+      noValidate
+      autoComplete="off"
+    >
+      <UserPage />
+    </Box>
   );
 }
 
