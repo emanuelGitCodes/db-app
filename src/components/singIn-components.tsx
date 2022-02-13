@@ -18,7 +18,7 @@ interface State {
   showPassword: boolean;
 }
 
-const UserPage = () => {
+const SignInComponents = () => {
 
   const [values, setValues] = React.useState<State>({
     amount: '',
@@ -45,14 +45,18 @@ const UserPage = () => {
   }
 
   return(
-    <Box>
+    <Box
+    component='div'
+    sx={{textAlign:'center', width:'100%', height:'100%'}}>
       <Box>
         <TextField
           required
           id="filled-required"
           label="User Name"
           variant="filled"
-          sx={{ m: 1,  width: 228, color: '#FFFFFF', backgroundColor: '#BB8082' }}
+          sx={{ m: 1,
+            color: '#FFFFFF', backgroundColor: '#BB8082',
+            width: 228, height:'100%'}}
         ></TextField>
       </Box>
       <Box>
@@ -90,4 +94,4 @@ const UserPage = () => {
   )
 }
 
-export default UserPage
+export default SignInComponents
