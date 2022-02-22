@@ -1,12 +1,12 @@
 import React from 'react';
 import SignInPage from './pages/signIn';
-import UserPage from './pages/user-page';
+import HomePage from './pages/home-page';
 
 function App() {
 
   return (
-      // <SignInPage></SignInPage>
-      <UserPage></UserPage>
+    // <SignInPage></SignInPage>
+    <HomePage></HomePage>
   );
 }
 
