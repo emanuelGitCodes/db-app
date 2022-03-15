@@ -1,10 +1,11 @@
 import React from "react"
 import { Box } from "@mui/system"
 import { Grid } from "@mui/material"
-import TestBox from "../components/test-box"
 import ToolBar from "../components/tool-bar"
 import EventContainer from "../components/event-container"
 import eventData from "../event-data"
+import orgData from "../org-Data"
+import OrgContainer from "../components/org-container"
 
 const HomePage = () => {
 
@@ -17,6 +18,14 @@ const HomePage = () => {
     eventTime={data.eventTime}
     eventDate={data.eventDate}
     />
+  })
+
+  let orgList = orgData?.map((org, index)=>{
+    return <OrgContainer
+      key={index}
+      orgName={org.name}
+      orgLogo={org.image}
+      />
   })
 
   return(
@@ -40,9 +49,8 @@ const HomePage = () => {
         </Grid>
 
         {/* Group Column */}
-        <Grid item xs={4} sm={4} md={4}
-        sx={{color:'white', backgroundColor:'primary.dark'}}>
-          <TestBox></TestBox>
+        <Grid item xs={4} sm={4} md={4}>
+          {orgList}
         </Grid>
 
       </Grid>

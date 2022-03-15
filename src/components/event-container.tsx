@@ -5,11 +5,9 @@ import { Paper } from '@mui/material'
 import { Avatar } from '@mui/material'
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import EventTitle from "./event-components/event-name"
-import EventDescription from "./event-components/event-description"
+import EventTitle from "./event-components/event-title"
 import EventTime from "./event-components/event-time"
 import EventConfirmation from "./event-components/event-confirm"
-import eventData from "../event-data"
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
