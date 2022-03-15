@@ -1,5 +1,4 @@
 import React from "react"
-import { Box } from "@mui/material"
 import { Grid } from "@mui/material"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
@@ -7,14 +6,16 @@ const ProfileBtn = () => {
 
   return(
     <Grid container direction='row' justifyContent='space-around' alignItems='center'
-    sx={{ borderRadius: 3.5,
-          color: 'primary.dark', backgroundColor: 'white' }}>
+    sx={{ borderRadius: 1,
+          color: 'primary.dark', backgroundColor: 'white',
+          paddingTop: 0.5, paddingBottom: 0.5
+          }}>
 
-        <Grid sx={{ paddingLeft: 2 }}>
+        <Grid>
           <AccountBoxIcon></AccountBoxIcon>
         </Grid>
 
-        <Grid sx={{ paddingLeft: 2, paddingRight: 2 }}>
+        <Grid>
           Profile
         </Grid>
 

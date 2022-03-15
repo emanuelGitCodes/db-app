@@ -19,24 +19,25 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-const EventContainer = ()=> {
+const EventContainer = (props: {
+  eventTitle:string;
+  eventLogo:string;
+  eventDescription:string;
+  eventTime:string;
+  eventDate:string})=> {
   return (
-    <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3,
-     }}>
+    <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3, }}>
       <StyledPaper
         sx={{ my: 1, mx: 'auto', p: 2,color: 'white', backgroundColor: 'primary.dark' }}>
-        <EventTitle title={eventData[0].eventName}></EventTitle>
+        <EventTitle title={props.eventTitle}></EventTitle>
 
         <Grid container wrap="nowrap" spacing={2}>
-
           <Grid item>
-            <Avatar>W</Avatar>
+            <Avatar>{props.eventLogo}</Avatar>
           </Grid>
-
           <Grid item xs>
-            <Typography>{eventData[0].eventDescription}</Typography>
+            <Typography>{props.eventDescription}</Typography>
           </Grid>
-
         </Grid>
 
         <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch'
@@ -60,22 +61,3 @@ const EventContainer = ()=> {
 }
 
 export default EventContainer
-  // <Box
-  // sx={{color:'white', backgroundColor:'primary.dark',
-  //       borderRadius: 1, marginTop:1, paddingTop: 1 }}>
-  //   <EventTitle title={eventData[0].eventName}></EventTitle>
-  //   <EventDescription description={eventData[0].eventDescription}></EventDescription>
-  //   <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch'
-  //   sx={{ marginTop: 2.25, paddingBottom: 4 }}>
-
-  //     <Grid item >
-  //       <EventTime></EventTime>
-  //     </Grid>
-
-  //     <Grid item sx={{ marginTop: 1.5 }}>
-  //       <EventConfirmation></EventConfirmation>
-  //     </Grid>
-
-  //   </Grid>
-  // </Box>
-

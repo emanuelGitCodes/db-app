@@ -1,20 +1,21 @@
 import React from "react"
-import { Box } from "@mui/material"
 import { Grid } from "@mui/material"
 import CommentIcon from '@mui/icons-material/Comment';
 
 const MessagesBtn = () => {
 
   return(
-   <Grid container direction='row' justifyContent='space-around' alignItems='center'
-    sx={{ borderRadius: 3.5, paddingTop:0.3,
-          color: 'primary.dark', backgroundColor: 'white' }}>
+    <Grid container direction='row' justifyContent='space-around' alignItems='center'
+    sx={{ borderRadius: 1,
+          color: 'primary.dark', backgroundColor: 'white',
+          paddingTop: 0.5, paddingBottom: 0.5
+          }}>
 
-        <Grid sx={{ paddingLeft: 2 }}>
+        <Grid>
           <CommentIcon></CommentIcon>
         </Grid>
 
-        <Grid sx={{ paddingLeft: 2, paddingRight: 2 }}>
+        <Grid>
           Messages
         </Grid>
 

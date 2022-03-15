@@ -15,19 +15,19 @@ const ToolBar = ()=> {
 
       <Grid container direction='column' justifyContent='flex-start' alignItems='center'>
 
-        <Grid item p={1} sx={{ marginTop: 1}}>
+        <Grid item p={1} sx={{ marginTop: 1, width: `100%`}}>
           <HomeBtn></HomeBtn>
         </Grid>
 
-        <Grid item p={1} sx={{ marginTop: 1 }}>
+        <Grid item p={1} sx={{ marginTop: 1, width: `100%`}}>
           <NotificationBtn></NotificationBtn>
         </Grid>
 
-        <Grid item p={1} sx={{ marginTop: 1 }}>
+        <Grid item p={1} sx={{ marginTop: 1, width: `100%`}}>
           <MessagesBtn></MessagesBtn>
         </Grid>
 
-        <Grid item p={1} sx={{ marginTop: 1 }}>
+        <Grid item p={1} sx={{ marginTop: 1, width: `100%`}}>
           <ProfileBtn></ProfileBtn>
         </Grid>
       </Grid>
