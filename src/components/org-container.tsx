@@ -9,8 +9,8 @@ import OrgName from "./org-components/org-name"
 const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(2),
-  maxWidth: 400,
+  padding: theme.spacing(3),
+  maxWidth: 500,
   color: theme.palette.text.primary,
 }));
 
@@ -19,16 +19,17 @@ const OrgContainer = (props: {
   orgLogo:string;
   })=> {
   return (
-    <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3, }}>
-      <StyledPaper sx={{
-        my: 1, mx: 'auto', p: 2,
-        color: 'white', backgroundColor: 'primary.dark'
+    <Box sx={{ flexGrow: 1, overflow: 'hidden', p: 'auto' }}>
+      <StyledPaper
+        sx={{
+          my: 1, mx: 'auto', p: 2,
+          color: 'white', backgroundColor: 'primary.dark'
         }}>
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container wrap="nowrap" spacing={1.5}>
           <Grid item>
             <Avatar>{props.orgLogo}</Avatar>
           </Grid>
-          <Grid item xs>
+          <Grid item>
             <OrgName title={props.orgName}></OrgName>
           </Grid>
         </Grid>

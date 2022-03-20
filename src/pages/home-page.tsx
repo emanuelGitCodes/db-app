@@ -13,6 +13,7 @@ const HomePage = () => {
     return <EventContainer
     key={index}
     eventLogo={data.eventLogo}
+    eventImage={data.eventImage}
     eventTitle={data.eventTitle}
     eventDescription={data.eventDescription}
     eventTime={data.eventTime}
@@ -32,12 +33,12 @@ const HomePage = () => {
     // Box acts like the body of the page
     <Box sx={{width: `100%`}}>
       {/* The outer GRID acts as the controller for how the inner grids are separated */}
-      <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch'>
+      <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={5}>
 
         {/* Tool Bar Column*/}
         <Grid item xs={2} sm={2} md={2}
         sx={{
-          backgroundColor:'primary.dark', borderRadius: 1
+          py:1
         }}>
           <ToolBar></ToolBar>
         </Grid>
