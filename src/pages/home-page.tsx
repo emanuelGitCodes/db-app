@@ -1,6 +1,7 @@
 import React from "react"
 import { Box } from "@mui/system"
 import { Grid } from "@mui/material"
+import ResponsiveAppBar from "../components/app-bar"
 import ToolBar from "../components/tool-bar"
 import EventContainer from "../components/event-container"
 import eventData from "../event-data"
@@ -13,6 +14,7 @@ const HomePage = () => {
     return <EventContainer
     key={index}
     eventLogo={data.eventLogo}
+    eventOrg={data.eventOrg}
     eventImage={data.eventImage}
     eventTitle={data.eventTitle}
     eventDescription={data.eventDescription}
@@ -32,8 +34,9 @@ const HomePage = () => {
   return(
     // Box acts like the body of the page
     <Box sx={{width: `100%`}}>
+      <ResponsiveAppBar/>
       {/* The outer GRID acts as the controller for how the inner grids are separated */}
-      <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={5}>
+      <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={1}>
 
         {/* Tool Bar Column*/}
         <Grid item xs={2} sm={2} md={2}
