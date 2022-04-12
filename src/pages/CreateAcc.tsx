@@ -13,13 +13,13 @@ const CreateAccPage = () => {
             display: "flex", justifyContent: "center",
             marginTop: "20%"
         }}>
-          
+
           <div>
             <Card>
               <SignupForm></SignupForm>
             </Card>
           </div>
-        
+
       </div>
 
     )

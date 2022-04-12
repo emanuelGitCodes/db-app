@@ -7,17 +7,20 @@ import { styled } from '@mui/material/styles'
 import OrgName from "./org-components/org-name"
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(3),
-  maxWidth: 500,
-  color: theme.palette.text.primary,
-}));
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(3),
+    maxWidth: 500,
+    color: theme.palette.text.primary,
+  })
+)
 
 const OrgContainer = (props: {
-  orgName:string;
-  orgLogo:string;
-  })=> {
+    orgName: string,
+    orgLogo: string,
+    orgLocation: string
+  }) => {
+
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', p: 'auto' }}>
       <StyledPaper
@@ -26,16 +29,19 @@ const OrgContainer = (props: {
           color: 'white', backgroundColor: 'primary.dark'
         }}>
         <Grid container wrap="nowrap" spacing={1.5}>
+          <Grid item> <Avatar>{props.orgLogo}</Avatar> </Grid>
+
           <Grid item>
-            <Avatar>{props.orgLogo}</Avatar>
+            <Grid container direction="column">
+              <Grid item> <OrgName title={props.orgName} /> </Grid>
+              <Grid item> <p>{props.orgLocation}</p> </Grid>
+            </Grid>
           </Grid>
-          <Grid item>
-            <OrgName title={props.orgName}></OrgName>
-          </Grid>
+
         </Grid>
       </StyledPaper>
     </Box>
-  );
+  )
 }
 
 export default OrgContainer

@@ -1,17 +1,11 @@
 import React from "react";
-import ResponsiveAppBar from "../components/app-bar";
 import ToolBar from "../components/tool-bar";
 import { Box } from "@mui/system";
-import { Grid } from "@mui/material";
+import { Grid, Divider, List } from "@mui/material";
 import eventData from "../event-data";
 import SingleEventContainer from "../components/event-components/event-single"
 import commentsData from "../comments-data";
 import AlignItemsList from "../components/comments-components/comment";
-import List from '@mui/material/List';
-import { Divider } from "@mui/material";
-
-// const bgColor = 'info.main'
-
 
 const EventPage = () => {
 
@@ -44,7 +38,6 @@ const EventPage = () => {
   return(
     // Box acts like the body of the page
     <Box sx={{width: `100%`}}>
-      <ResponsiveAppBar/>
       {/* The outer GRID acts as the controller for how the inner grids are separated */}
       <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={1}>
 

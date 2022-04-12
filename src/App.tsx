@@ -1,43 +1,44 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom';
-import SignInPage from './pages/signIn';
-import HomePage from './pages/home-page';
-import EventPage from './pages/event-page';
-<<<<<<< HEAD
-import ErrorPage from './pages/error-page';
-=======
-import CreateAccPage from './pages/CreateAcc';
->>>>>>> b59e0900d9b2af927aa634401c0512174c567f49
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom'
+import { store, AppState } from './user-store'
+import ResponsiveAppBar from './components/app-bar'
+import SignUpPage from './pages/sign-up'
+import HomePage from './pages/home-page'
+import EventPage from './pages/event-page'
+import ErrorPage from './pages/error-page'
+import CreateAccPage from './pages/CreateAcc'
 
-function App (){
+/**
+ * 1) create a [ sign-up | log in ] pages
+ * 2) use PUT on sign-up
+ * 3) use GET to get user's data on log in
+ */
 
-  const NavComponent = () => {
-    return (
-      <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/signInPage'>Sign In Page</Link>
-        <Link to='/eventPage'>Event Page</Link>
-      </nav>
-    )
-  }
+function App () {
 
   return(
-    <Router>
-      {/* <NavComponent /> */}
-      <Routes>
-        <Route  path='/' element={<HomePage/>} />  {/* App root */}
+    <>
+      <AppState>
+        <Router>
+          <ResponsiveAppBar store={store}/>
 
-        {/* Format allows to pass data from uno url to the code. */}
-        {/* Page only shows up if a user id is pass */}
-        <Route path='event/:user_id' element={<EventPage/>} >
-          {/* <Route path=':user_id' element={<EventPage/>} /> */}
-          {/* LIST format if multiple parameters are pass */}
-        </Route>
+          <Routes>
+            <Route  path='/' element={<SignUpPage />} />  {/* App root */}
+            <Route path='home' element={<HomePage />} />
 
-        <Route path='signIn' element={<SignInPage/>} />
-        <Route path='*' element={<ErrorPage/>} />
-      </Routes>
-    </Router>
+            {/* Format allows to pass data from uno url to the code. */}
+            {/* Page only shows up if a user id is pass */}
+            <Route path='event/:user_id' element={<EventPage />} >
+              {/* <Route path=':user_id' element={<EventPage/>} /> */}
+              {/* LIST format if multiple parameters are pass */}
+            </Route>
+
+
+            <Route path='*' element={<ErrorPage />} />
+          </Routes>
+        </Router>
+      </AppState>
+    </>
   )
 }
 

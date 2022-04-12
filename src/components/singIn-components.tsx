@@ -58,30 +58,31 @@ const SignInComponents = () => {
           variant="filled"
           sx={{ m: 1,
             color: '#FFFFFF',
-           }}
-        ></TextField>
-        <FormControl
-          variant="filled"
-          sx={{ m: 1}}>
-          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-          <FilledInput
-            id="filled-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end" >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          ></FilledInput>
-        </FormControl>
+          }}
+      >
+      </TextField>
+      <FormControl
+        variant="filled"
+        sx={{ m: 1}}>
+        <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+        <FilledInput
+          id="filled-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
+          value={values.password}
+          onChange={handleChange('password')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end" >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        ></FilledInput>
+      </FormControl>
       <Box>
         <Button
           variant="contained"

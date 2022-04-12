@@ -17,27 +17,38 @@ import MenuItem from '@mui/material/MenuItem'
 import eventData from '../event-data' // Use for mock purposes
 
 // Interfaces
-  interface IUser {
-    first_name: string,
-    last_name: string,
-    user_id: number
-  }
+interface IUserData {
+  logIn: boolean,
+  userName: string,
+  firstName: string,
+  last_name: string
+}
 
-  interface IPages {
-    page: string,
-    route: string
-  }
+interface IContextType {
+  state: IUserData,
+  dispatch: React.Dispatch<{type: string, value: unknown}>
+}
+interface IUser {
+  first_name: string,
+  last_name: string,
+  user_id: number
+}
 
-  interface ISettings {
-    setting: string,
-    route: string
-  }
+interface IPages {
+  page: string,
+  route: string
+}
+
+interface ISettings {
+  setting: string,
+  route: string
+}
 
 // List of pages and routes that are propagate through out all the sites.
 const pagesAndRoutes: IPages[] = [
-  { page: 'Home', route: '/' },
+  { page: 'Home', route: '/home' },
   { page: 'Event', route: '/event' },
-  { page: 'SignIn', route: '/signIn' },
+  { page: 'Log In', route: '/signIn' },
 ]
 
 // List of settings and routes that are propagate through out all the sites.
@@ -51,13 +62,17 @@ const websiteName = 'Bulletin Board' // Can be change to anything.
 const url = ' https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users?user_id=1'
 
 // AppBar Component Function
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props: { store: any }) => {
+
+  const manager: IContextType = React.useContext(props?.store)
+  const dispatch = manager.dispatch
+  console.log(manager)
+
   const navigate = useNavigate() // react-router | utilize for jumping from one page to another.
   let urlParams = useParams() // retrieves a specific information embedded on the URL. | urlParams.user_id
 
-  const urlLocation = useLocation()
-  console.log(urlLocation)
-  const query = new URLSearchParams(urlLocation.search)
+
+  const query = new URLSearchParams(useLocation().search)
   console.log(query.get('first'))
   console.log(query.get('last'))
 
@@ -65,7 +80,8 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
-    // Logged in user IMAGE | Might not make it into the product | Substituted for users first and last initials
+  // AVATAR CIRCLE | Logged in user IMAGE | Might not make it into the product
+  // Substituted for users first and last initials
   const userImage = eventData[0].eventImage
   const [isUser, setUser] = useState <IUser | undefined> (undefined)
 
@@ -74,6 +90,7 @@ const ResponsiveAppBar = () => {
   const getUsers = async () => {
     const response = await fetch(url)
     const list = await response.json()
+    // console.log(list)
     setUser(list[0])
   }
 
