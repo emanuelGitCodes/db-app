@@ -19,7 +19,7 @@ interface State {
   showPassword: boolean;
 }
 
-const SignInComponents = () => {
+const SignupForm = () => {
 
   const [values, setValues] = React.useState<State>({
     amount: '',
@@ -47,9 +47,10 @@ const SignInComponents = () => {
 
   return(
     <Card
-    sx={{textAlign:'center', width:'100%', height:'100%'}}>
+    sx={{textAlign:'center', width:'100%', height:'100%', display: 'flex', flex: 1,
+        flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
       <Typography variant="h5" margin={3}>
-        Log In
+        Sign Up
       </Typography>
       <TextField
           required
@@ -60,9 +61,10 @@ const SignInComponents = () => {
             color: '#FFFFFF',
            }}
         ></TextField>
-        <FormControl
+      <FormControl
           variant="filled"
-          sx={{ m: 1}}>
+          sx={{ m: 1}}
+          >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
             id="filled-adornment-password"
@@ -86,11 +88,11 @@ const SignInComponents = () => {
         <Button
           variant="contained"
           sx={{ m: 1, backgroundColor: '#046582', marginBottom: 2 }}>
-          Log In
+          Create Account
         </Button>
       </Box>
     </Card>
   )
 }
 
-export default SignInComponents
+export default SignupForm

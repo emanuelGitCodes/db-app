@@ -3,7 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-rout
 import SignInPage from './pages/signIn';
 import HomePage from './pages/home-page';
 import EventPage from './pages/event-page';
+<<<<<<< HEAD
 import ErrorPage from './pages/error-page';
+=======
+import CreateAccPage from './pages/CreateAcc';
+>>>>>>> b59e0900d9b2af927aa634401c0512174c567f49
 
 function App (){
 

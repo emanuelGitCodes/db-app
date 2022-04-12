@@ -1,20 +1,29 @@
-  import React from "react"
-  import { Box } from "@mui/material"
-  import SignInComponents from '../components/singIn-components'
+import React from "react"
+import { Box } from "@mui/material"
+import SignInComponents from '../components/singIn-components'
+import {Paper, Card} from "@mui/material"
+import './signinBG.css'
 
-  const SignInPage = () => {
+const SignInPage = () => {
+  return(
+      <div
+        style={{
+        width: "inherit", height: "100",
+        display: "flex", justifyContent: "center",
+        marginTop: "20%"
+        }}>
+          
+          <div>
+            <Card>
+              <SignInComponents></SignInComponents>
+            </Card>
+          </div>
+        
+      </div>
 
-    return(
-      <Box
-        component='div'
-        sx={{
-          backgroundColor: '#F39189',
-          paddingTop:'5em', paddingBottom: '5em',
-          height:'56em', width:'25.875em',
-          overflowY:'hidden'}}>
-          <SignInComponents></SignInComponents>
-      </Box>
-    )
-  }
+    
 
-  export default SignInPage
+  )
+}
+
+export default SignInPage
