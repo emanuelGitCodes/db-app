@@ -8,32 +8,37 @@ import SingleEventContainer from "../components/event-components/event-single"
 import commentsData from "../comments-data";
 import AlignItemsList from "../components/comments-components/comment";
 import List from '@mui/material/List';
-import { red } from "@mui/material/colors";
+import { Divider } from "@mui/material";
 
-const bgColor = 'info.main'
+// const bgColor = 'info.main'
 
 
 const EventPage = () => {
 
-  let eventItem = <SingleEventContainer
-    eventLogo={eventData[0].eventLogo}
-    eventOrg={eventData[0].eventOrg}
-    eventImage={eventData[0].eventImage}
-    eventTitle={eventData[0].eventTitle}
-    eventDescription={eventData[0].eventDescription}
-    eventTime={eventData[0].eventTime}
-    eventDate={eventData[0].eventDate}
+  let eventItem = eventData[0]
+
+  let eventComponent = <SingleEventContainer
+    eventLogo={eventItem.eventLogo}
+    eventOrg={eventItem.eventOrg}
+    eventImage={eventItem.eventImage}
+    eventTitle={eventItem.eventTitle}
+    eventDescription={eventItem.eventDescription}
+    eventTime={eventItem.eventTime}
+    eventDate={eventItem.eventDate}
     />
 
   const commentList = commentsData?.map((item, index)=>{
-    return <AlignItemsList
-      key={index}
-      name={item.userName}
-      image={item.userImage}
-      comment={item.userComment}
-      date={item.commentDate}
-      time={item.commentTime}
-    />
+    return<>
+      <AlignItemsList
+        key={index}
+        name={item.userName}
+        image={item.userImage}
+        comment={item.userComment}
+        date={item.commentDate}
+        time={item.commentTime}
+      />
+      <Divider key={commentsData.length + index} light />
+    </>
   })
 
   return(
@@ -54,7 +59,7 @@ const EventPage = () => {
         {/* Events Column*/}
         <Grid item xs={5} sm={5} md={5}
         sx={{}}>
-          {eventItem}
+          {eventComponent}
         </Grid>
 
         {/* Comments Column */}

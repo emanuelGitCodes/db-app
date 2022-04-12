@@ -1,4 +1,5 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import { Box } from "@mui/system"
 import { Grid } from "@mui/material"
 import ResponsiveAppBar from "../components/app-bar"
@@ -8,7 +9,12 @@ import eventData from "../event-data"
 import orgData from "../org-Data"
 import OrgContainer from "../components/org-container"
 
+const url = ' https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users?user_id=1'
+
 const HomePage = () => {
+
+  const [isUser, setUser] = useState([])
+
 
   let eventList = eventData?.map((data, index) => {
     return <EventContainer
@@ -30,6 +36,17 @@ const HomePage = () => {
       orgLogo={org.image}
       />
   })
+
+  const getUsers = async () => {
+    const response = await fetch(url)
+    const user = await response.json()
+    console.log({user})
+    setUser(user.users_list)
+  }
+
+  useEffect(() => {
+    // getUsers()
+  }, [])
 
   return(
     // Box acts like the body of the page

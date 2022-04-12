@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import * as React from 'react'
 import { Grid } from "@mui/material"
 import { Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -25,19 +24,19 @@ const ToolBar = ()=> {
         }}>
         <Grid container direction={'column'} justifyContent={'flex-start'} spacing={1.5}>
           <Grid item>
-            <HomeBtn></HomeBtn>
+            <HomeBtn />
           </Grid>
 
           <Grid item>
-            <NotificationBtn></NotificationBtn>
+            <NotificationBtn />
           </Grid>
 
           <Grid item>
-            <MessagesBtn></MessagesBtn>
+            <MessagesBtn />
           </Grid>
 
           <Grid item>
-            <ProfileBtn></ProfileBtn>
+            <ProfileBtn />
           </Grid>
 
         </Grid>

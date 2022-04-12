@@ -1,7 +1,7 @@
 import * as React from 'react';
-import List from '@mui/material/List';
+// import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
@@ -12,7 +12,8 @@ const AlignItemsList = (props: {
   image: string;
   comment: string;
   date: string;
-  time: string; })=> {
+  time: string; }) => {
+
   return (
     <ListItem alignItems="flex-start" sx={{color:'white'}}>
       <ListItemAvatar>
