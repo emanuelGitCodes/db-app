@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-rout
 import { store, AppState } from './user-store'
 import ResponsiveAppBar from './components/app-bar'
 import SignUpPage from './pages/sign-up'
+import LogInPage from './pages/log-in-page'
 import HomePage from './pages/home-page'
 import EventPage from './pages/event-page'
 import ErrorPage from './pages/error-page'
-import CreateAccPage from './pages/CreateAcc'
+
 
 /**
  * 1) create a [ sign-up | log in ] pages
@@ -24,6 +25,7 @@ function App () {
 
           <Routes>
             <Route  path='/' element={<SignUpPage />} />  {/* App root */}
+            <Route  path='logIn' element={<LogInPage />} />
             <Route path='home' element={<HomePage />} />
 
             {/* Format allows to pass data from uno url to the code. */}
