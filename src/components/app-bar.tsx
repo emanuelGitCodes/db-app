@@ -4,6 +4,7 @@ import { AppBar, Avatar, Box, Container, IconButton, Menu, MenuItem, Typography,
 import MenuIcon from '@mui/icons-material/Menu'
 
 import eventData from '../event-data' // Use for mock purposes
+import { store } from '../user-store'
 
 // Interfaces
 interface IUserData {
@@ -59,9 +60,9 @@ const url = 'https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users?user_i
 const url2 = 'https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users?'
 
 // *******************
-const ResponsiveAppBar = (props: { store: any }) => {
+const ResponsiveAppBar = () => {
 
-  const manager: IContextType = React.useContext(props?.store)
+  const manager: any = React.useContext(store)
   const dispatch = manager.dispatch
 
   const navigate = useNavigate() // react-router | utilize for jumping from one page to another.
@@ -77,6 +78,13 @@ const ResponsiveAppBar = (props: { store: any }) => {
   // Don't know what to do make of these two states. | Straight from the react mui App Bar page.
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
+
+  let userInitials = () => {
+    console.log(manager.state.userName)
+    console.log(manager.state.firstName)
+    console.log(manager.state.login)
+    console.log( manager.state.login && manager.state.firstName !== '')
+  }
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -98,16 +106,23 @@ const ResponsiveAppBar = (props: { store: any }) => {
     const response = await fetch(url)
     const list = await response.json()
     console.log(list)
+    dispatch({
+      type: 'update_user', value: {
+        userName: 'TEST_USER',
+        firstName: list.first_name,
+        lastName: list.last_name
+      }
+    })
     setUser(list[0])
   }
 
   useEffect(() => {
     getUsers()
-    // dispatch({
-    //   type: 'update_log_in',
-    //   value: manager.state.logIn
-    // })
   }, [])
+
+  useEffect(() => {
+    userInitials()
+  }, [manager.state])
 
   return (
     <AppBar position="static">
@@ -146,7 +161,7 @@ const ResponsiveAppBar = (props: { store: any }) => {
               sx={{ display: { xs: 'block', md: 'none' }, }}
             >
               {
-                manager.state.logIn
+                manager.state.logIn &&  manager.state.userName !== ''
                 ? pagesAndRoutes.map((page) => (
                   <MenuItem key={page.page} onClick={handleCloseNavMenu}>
                     <Typography
@@ -182,7 +197,7 @@ const ResponsiveAppBar = (props: { store: any }) => {
           {/* Text boxes with Routes that show up when the appbar is at its largest state */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {
-              manager.state.logIn
+              manager.state.logIn && manager.state.userName !== ''
               ? pagesAndRoutes.map((page) => (
                 <MenuItem key={page.page} onClick={handleCloseNavMenu}>
                   <Typography
@@ -209,7 +224,13 @@ const ResponsiveAppBar = (props: { store: any }) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 
       {/* user NAME AND IMAGE at the top right */}
-                <Avatar alt={`${isUser?.first_name} ${isUser?.last_name}`} src={userImage} />
+              {
+                manager.state.logIn && manager.state.userName != ''
+                ? <Avatar alt={`${manager.state?.firstName} ${manager.state?.lastName}`} >
+                    { `${manager.state?.firstName[0]} ${manager.state?.lastName}` }
+                  </Avatar>
+                : <Avatar alt={`${manager.state?.firstName} ${manager.state?.lastName}`} src={userImage}/>
+              }
 
               </IconButton>
             </Tooltip>
@@ -232,7 +253,7 @@ const ResponsiveAppBar = (props: { store: any }) => {
               onClose={handleCloseUserMenu}
             >
               {
-                manager.state.logIn
+                manager.state.logIn &&  manager.state.userName !== ''
                 ? settingsAndRoutes.map((setting) => (
                     <MenuItem key={setting.setting} onClick={() => navigate(setting.route) }>
                       <Typography textAlign="center">{setting.setting}</Typography>

@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Grid } from "@mui/material"
-import { Paper } from '@mui/material'
+import { Grid, Paper } from "@mui/material"
 import { styled } from '@mui/material/styles'
 import HomeBtn from "../components/tool-bar/home-btn"
 import NotificationBtn from './tool-bar/notification-btn'

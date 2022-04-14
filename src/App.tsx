@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { store, AppState } from './user-store'
 import ResponsiveAppBar from './components/app-bar'
 import SignUpPage from './pages/sign-up'
@@ -21,7 +21,7 @@ function App () {
     <>
       <AppState>
         <Router>
-          <ResponsiveAppBar store={store}/>
+          <ResponsiveAppBar/>
 
           <Routes>
             <Route  path='/' element={<SignUpPage />} />  {/* App root */}

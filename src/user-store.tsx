@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState, createContext, useReducer, FC } from 'react'
+import { createContext, useReducer, FC } from 'react'
 
 interface IUserData {
   logIn: boolean,
   userName: string,
   firstName: string,
-  last_name: string
+  lastName: string
 }
 
 interface IContextType {
@@ -17,7 +17,7 @@ const userData: IUserData = {
   logIn: false,
   userName: '',
   firstName: '',
-  last_name: ''
+  lastName: '',
 }
 
 const store = createContext<IContextType | null>(null)
@@ -30,6 +30,15 @@ const AppState:FC<any> = ({children}) => {
     switch (action.type) {
       case 'update_log_in':
         return {...state, logIn: !userData.logIn}
+
+      case 'update_user':
+        return {
+          ...state,
+          userName: action.value.userName,
+          firstName: action.value.firstName,
+          lastName: action.value.lastName,
+          logIn: !userData.logIn
+        }
 
       default:
         throw new Error(`Base reducer: action type: [ ${action.type} ] not found.`)

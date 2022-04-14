@@ -1,8 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
-import { Grid } from "@mui/material"
-import { Paper } from '@mui/material'
-import { Avatar } from '@mui/material'
+import { Avatar, Box, Grid, Paper } from "@mui/material"
 import { styled } from '@mui/material/styles'
 import OrgName from "./org-components/org-name"
 

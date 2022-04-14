@@ -3,12 +3,12 @@ import {
   Box, Button,
   FilledInput, FormControl,
   Grid,
-  IconButton, InputAdornment, InputLabel,
-  TextField } from '@mui/material'
-
+  IconButton, InputAdornment, InputLabel} from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { store } from '../user-store'
 
 interface INewUser {
+  userId: number,
   userName: string,
   password: string,
   firstName: string,
@@ -17,11 +17,26 @@ interface INewUser {
   showPassword: boolean
 }
 
-const userURL = 'https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users?'
+interface IUserData {
+  logIn: boolean,
+  userName: string,
+  firstName: string,
+  last_name: string
+}
+interface IContextType {
+  state: IUserData,
+  dispatch: React.Dispatch<{type: string, value: any}>
+}
+
+const userURL: string = 'https://ekmqadzwwi.execute-api.us-east-1.amazonaws.com/users'
 
 const SignUpPage = () => {
 
+  const manager: any = React.useContext(store)
+  const dispatch = manager.dispatch
+
   const [newUser, setNewUser] = useState<INewUser> ({
+    userId: 0,
     userName: '',
     password: '',
     firstName: '',
@@ -29,8 +44,6 @@ const SignUpPage = () => {
     university: '',
     showPassword: false,
   })
-
-  const [isSubmit, setSubmit] = useState<Boolean> (false)
 
   const handleChange =
     (prop: keyof INewUser) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,26 +59,51 @@ const SignUpPage = () => {
     event.preventDefault()
   }
 
-  async function putUser() {
-    const requestOption = {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        user_id: 9098,
-        password: newUser.password,
-        first_name: newUser.firstName,
-        last_name: newUser.lastName
-      })
-    }
+  const putUser = async () => {
 
-    const response = await fetch(userURL, requestOption)
-    const data = await response.json()
-    console.log(data)
-  }
+    // Pushing data to the server using POST or PUT returns ERROR: CORS | Access-Control-Allow-Origin
+    try {
+      const responseOption: any = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: newUser.userId,
+          password: newUser.password,
+          first_name: newUser.firstName,
+          last_name: newUser.lastName
+        })
+      }
+
+      const response: any = await fetch(userURL, responseOption)
+
+      if (!response.ok){
+        const message = `Error Status Code: ${response}`
+        throw new Error(message)
+      }
+
+      const data = (await response.json()) as any
+      console.log(JSON.stringify(data))
+
+    } catch (error) {
+      console.log(`putUser Error: ${error}`)
+    }
+  } // END of putUser
 
   useEffect(() => {
     putUser()
-  }, [isSubmit])
+
+    dispatch({
+      type: 'update_user', value: {
+        userName: newUser.userName,
+        firstName: newUser.firstName,
+        last_name: newUser.lastName
+      }
+    })
+
+  }, [newUser.userId])
 
   return (
     <Box py='10rem' >
@@ -155,7 +193,9 @@ const SignUpPage = () => {
         <Grid item py='2rem'>
           <Button variant='contained'
             sx={{color:'blue', backgroundColor: 'white'}}
-            onClick={() => setSubmit(!isSubmit)}
+            onClick={() => {
+              setNewUser({ ...newUser, userId: Math.floor(Math.random() * 1000)})
+            }}
           >
             Submit
           </Button>
