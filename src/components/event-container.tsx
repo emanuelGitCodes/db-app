@@ -1,15 +1,9 @@
 
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { store } from '../user-store'
 import { styled } from '@mui/material/styles'
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardMedia from '@mui/material/CardMedia'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Collapse from '@mui/material/Collapse'
-import Avatar from '@mui/material/Avatar'
-import IconButton, { IconButtonProps } from '@mui/material/IconButton' // Every Icon requires a specific color.
-import Typography from '@mui/material/Typography'
+import {Avatar, Card, CardHeader, CardContent, CardActions, CardMedia, Collapse, Typography, IconButton, IconButtonProps} from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -38,7 +32,12 @@ const EventContainer = (props: { // props types
   eventImage:string,
   eventTime:string,
   eventDate:string,
-  eventDescription:string })=> {
+  eventDescription:string,
+  eventIndex: number, })=> {
+
+  const manager: any = React.useContext(store)
+  const dispatch = manager.dispatch
+  const navigate = useNavigate()
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -48,7 +47,15 @@ const EventContainer = (props: { // props types
   return (
     <Card sx={{
         maxWidth: '100%', marginTop: 1,
-        color:'white', backgroundColor:'primary.dark'}}>
+        color:'white', backgroundColor:'primary.dark'}}
+        onClick={() => {
+          dispatch({
+            type: 'checking_event', value: { checkingEvent: props.eventIndex }
+          })
+          console.log('work')
+          navigate(`/event/${props.eventIndex}`)
+        }}
+      >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'text.disabled' }} aria-label='recipe'>

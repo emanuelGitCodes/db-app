@@ -25,10 +25,7 @@ const HomePage = () => {
   const [listUniversities, setListUniversities] = useState <IUniversity[] | undefined> (undefined)
 
   let eventList = eventData?.map((data, index) => {
-    return <div key={index} onClick={() => {
-      navigate(`/event/${index}`) // update index to event index
-    }}>
-      <EventContainer
+    return <EventContainer
       key={index}
       eventLogo={data.eventLogo}
       eventOrg={data.eventOrg}
@@ -37,8 +34,9 @@ const HomePage = () => {
       eventDescription={data.eventDescription}
       eventTime={data.eventTime}
       eventDate={data.eventDate}
-      />
-    </div>
+      eventIndex={index}
+    />
+
   })
 
   // returns a list of cards displaying a Universities name and logo

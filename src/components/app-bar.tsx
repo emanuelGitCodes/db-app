@@ -167,12 +167,12 @@ const settingsAndRoutes: ISettings[] = [
               {`${manager.state?.firstName}  |`}
               {/* user Initials OR IMAGE at the top right */}
               {
-                manager.state.logIn && manager.state.userName !== ''
+                manager.state?.logIn && manager.state?.userName !== ''
                 ? <Avatar
                     sx={{ bgcolor: '#0d47a1' }}
                     alt={`${manager.state?.firstName} ${manager.state?.lastName}`}
                   >
-                    { `${manager.state?.firstName[0]} ${manager.state?.lastName[0]}` }
+                    { `${manager.state?.firstName}`}
                   </Avatar>
                 : <Avatar alt={`${manager.state?.firstName} ${manager.state?.lastName}`}/>
               }
@@ -198,7 +198,7 @@ const settingsAndRoutes: ISettings[] = [
               onClose={handleCloseUserMenu}
             >
               {
-                manager.state.logIn &&  manager.state.userName !== ''
+                manager.state?.logIn &&  manager.state?.userName !== ''
                 ? settingsAndRoutes.map((setting) => (
                     <MenuItem key={setting.setting} onClick={() => navigate(setting.route)}>
                       <Typography textAlign="center">{setting.setting}</Typography>

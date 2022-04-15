@@ -1,4 +1,5 @@
 import React from "react";
+import { store } from "../user-store"
 // import ToolBar from "../components/tool-bar";
 import { Box } from "@mui/system";
 import { Grid, Divider, List } from "@mui/material";
@@ -8,8 +9,12 @@ import commentsData from "../comments-data";
 import AlignItemsList from "../components/comments-components/comment";
 
 const EventPage = () => {
+  const manager: any = React.useContext(store)
+  const dispatch = manager.dispatch
 
-  const eventItem = eventData[0]
+  console.log(manager.state?.checkingEvent)
+
+  const eventItem = eventData[manager.state.checkingEvent]
 
   let eventComponent = <SingleEventContainer
     eventLogo={eventItem.eventLogo}
