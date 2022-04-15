@@ -172,7 +172,7 @@ const settingsAndRoutes: ISettings[] = [
                     sx={{ bgcolor: '#0d47a1' }}
                     alt={`${manager.state?.firstName} ${manager.state?.lastName}`}
                   >
-                    { `${manager.state?.firstName}`}
+                    {`${manager.state?.firstName}`}
                   </Avatar>
                 : <Avatar alt={`${manager.state?.firstName} ${manager.state?.lastName}`}/>
               }

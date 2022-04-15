@@ -23,6 +23,7 @@ const HomePage = () => {
 
   const navigate = useNavigate()
   const [listUniversities, setListUniversities] = useState <IUniversity[] | undefined> (undefined)
+  const [listRSO, setListRSO] = useState <IUniversity[] | undefined> (undefined)
 
   let eventList = eventData?.map((data, index) => {
     return <EventContainer
@@ -36,11 +37,31 @@ const HomePage = () => {
       eventDate={data.eventDate}
       eventIndex={index}
     />
-
   })
 
   // returns a list of cards displaying a Universities name and logo
   let displayListUniversities = listUniversities?.map((org, index)=>{
+    const result = org.name.trim()
+      .split(/(?=[A-Z])/)
+      .map(element => element.trim())
+
+    const lettersCommas = result.map(element => element[0])
+
+    let completeLogo = ''
+    lettersCommas.join()
+      .split(',')
+      .map( element => completeLogo += element)
+
+    return <OrgContainer
+      key={index}
+      orgName={org.name}
+      orgLogo={completeLogo}
+      orgLocation={org.location}
+    />
+  }) // end of displayListUniversities
+
+    // returns a list of cards displaying a Universities name and logo
+  let displayListRSO = listRSO?.map((org, index)=>{
     const result = org.name.trim()
       .split(/(?=[A-Z])/)
       .map(element => element.trim())
@@ -66,8 +87,15 @@ const HomePage = () => {
     setListUniversities(universities)
   }
 
+  const getRSO = async () => {
+    const response = await fetch(url)
+    const RSO = await response.json()
+
+  }
+
   useEffect(() => {
     getUniversities()
+    getRSO()
   }, [])
 
   useEffect(()=> {
@@ -94,6 +122,7 @@ const HomePage = () => {
         {/* Group Column */}
         <Grid item xs={4} sm={4} md={4}>
           {displayListUniversities}
+          {displayListRSO}
         </Grid>
 
       </Grid>

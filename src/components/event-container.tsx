@@ -52,7 +52,6 @@ const EventContainer = (props: { // props types
           dispatch({
             type: 'checking_event', value: { checkingEvent: props.eventIndex }
           })
-          console.log('work')
           navigate(`/event/${props.eventIndex}`)
         }}
       >
