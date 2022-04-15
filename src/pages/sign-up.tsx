@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box, Button,
   FilledInput, FormControl,
@@ -35,6 +36,8 @@ const SignUpPage = () => {
   const manager: any = React.useContext(store)
   const dispatch = manager.dispatch
 
+  const navigate = useNavigate()
+  const [isSubmit, setSubmit] = useState<boolean> (false)
   const [newUser, setNewUser] = useState<INewUser> ({
     userId: 0,
     userName: '',
@@ -44,6 +47,20 @@ const SignUpPage = () => {
     university: '',
     showPassword: false,
   })
+
+  useEffect(() => {
+    if (isSubmit) putUser()
+
+      dispatch({
+        type: 'update_user', value: {
+          userName: newUser.userName,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          userId: newUser.userId
+        }
+      })
+
+  }, [isSubmit])
 
   const handleChange =
     (prop: keyof INewUser) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,26 +101,12 @@ const SignUpPage = () => {
         throw new Error(message)
       }
 
-      const data = (await response.json()) as any
-      console.log(JSON.stringify(data))
+      navigate(`/home/${newUser.userId}`)
 
     } catch (error) {
       console.log(`putUser Error: ${error}`)
     }
   } // END of putUser
-
-  useEffect(() => {
-    putUser()
-
-    dispatch({
-      type: 'update_user', value: {
-        userName: newUser.userName,
-        firstName: newUser.firstName,
-        last_name: newUser.lastName
-      }
-    })
-
-  }, [newUser.userId])
 
   return (
     <Box py='10rem' >
@@ -195,6 +198,7 @@ const SignUpPage = () => {
             sx={{color:'blue', backgroundColor: 'white'}}
             onClick={() => {
               setNewUser({ ...newUser, userId: Math.floor(Math.random() * 1000)})
+              setSubmit(true)
             }}
           >
             Submit

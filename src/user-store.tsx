@@ -5,7 +5,8 @@ interface IUserData {
   logIn: boolean,
   userName: string,
   firstName: string,
-  lastName: string
+  lastName: string,
+  userID: number,
 }
 
 interface IContextType {
@@ -18,6 +19,7 @@ const userData: IUserData = {
   userName: '',
   firstName: '',
   lastName: '',
+  userID: 0,
 }
 
 const store = createContext<IContextType | null>(null)
@@ -32,13 +34,15 @@ const AppState:FC<any> = ({children}) => {
         return {...state, logIn: !userData.logIn}
 
       case 'update_user':
-        return {
+        let test = {
           ...state,
           userName: action.value.userName,
           firstName: action.value.firstName,
           lastName: action.value.lastName,
-          logIn: !userData.logIn
+          userId: action.value.userId,
+          logIn: true
         }
+        return test
 
       default:
         throw new Error(`Base reducer: action type: [ ${action.type} ] not found.`)

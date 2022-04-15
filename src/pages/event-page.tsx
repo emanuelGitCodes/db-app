@@ -1,5 +1,5 @@
 import React from "react";
-import ToolBar from "../components/tool-bar";
+// import ToolBar from "../components/tool-bar";
 import { Box } from "@mui/system";
 import { Grid, Divider, List } from "@mui/material";
 import eventData from "../event-data";
@@ -9,7 +9,7 @@ import AlignItemsList from "../components/comments-components/comment";
 
 const EventPage = () => {
 
-  let eventItem = eventData[0]
+  const eventItem = eventData[0]
 
   let eventComponent = <SingleEventContainer
     eventLogo={eventItem.eventLogo}
@@ -42,12 +42,12 @@ const EventPage = () => {
       <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={1}>
 
         {/* Tool Bar Column*/}
-        <Grid item xs={2} sm={2} md={2}
+        {/* <Grid item xs={2} sm={2} md={2}
         sx={{
           py:1
         }}>
           <ToolBar></ToolBar>
-        </Grid>
+        </Grid> */}
 
         {/* Events Column*/}
         <Grid item xs={5} sm={5} md={5}

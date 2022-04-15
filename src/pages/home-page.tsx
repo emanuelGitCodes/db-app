@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 import { Box } from "@mui/system"
 import { Grid } from "@mui/material"
-import ToolBar from "../components/tool-bar"
+// import ToolBar from "../components/tool-bar"
 import EventContainer from "../components/event-container"
 import eventData from "../event-data"
 import OrgContainer from "../components/org-container"
+import {store} from '../user-store'
 
 interface IUniversity {
   u_id: number,
@@ -16,21 +18,27 @@ interface IUniversity {
 const url = 'https://e7iize5d6c.execute-api.us-east-1.amazonaws.com/universities'
 
 const HomePage = () => {
+  const manager: any = React.useContext(store)
+  const dispatch = manager.dispatch
 
-  const [isUser, setUser] = useState([])
+  const navigate = useNavigate()
   const [listUniversities, setListUniversities] = useState <IUniversity[] | undefined> (undefined)
 
   let eventList = eventData?.map((data, index) => {
-    return <EventContainer
-    key={index}
-    eventLogo={data.eventLogo}
-    eventOrg={data.eventOrg}
-    eventImage={data.eventImage}
-    eventTitle={data.eventTitle}
-    eventDescription={data.eventDescription}
-    eventTime={data.eventTime}
-    eventDate={data.eventDate}
-    />
+    return <div key={index} onClick={() => {
+      navigate(`/event/${index}`) // update index to event index
+    }}>
+      <EventContainer
+      key={index}
+      eventLogo={data.eventLogo}
+      eventOrg={data.eventOrg}
+      eventImage={data.eventImage}
+      eventTitle={data.eventTitle}
+      eventDescription={data.eventDescription}
+      eventTime={data.eventTime}
+      eventDate={data.eventDate}
+      />
+    </div>
   })
 
   // returns a list of cards displaying a Universities name and logo
@@ -75,10 +83,10 @@ const HomePage = () => {
       {/* The outer GRID acts as the controller for how the inner grids are separated */}
       <Grid container direction='row' justifyContent='space-evenly' alignItems='stretch' py={1}>
 
-        {/* Tool Bar Column*/}
+        {/* Tool Bar Column
         <Grid item xs={2} sm={2} md={2} sx={{ py:1 }}>
           <ToolBar/>
-        </Grid>
+        </Grid> */}
 
         {/* Events Column*/}
         <Grid item xs={5} sm={5} md={5} sx={{}} >
