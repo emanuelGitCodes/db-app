@@ -22,21 +22,23 @@ const AlignItemsList = (props: {
       <ListItemText
         primary={
           <Typography component='span' fontWeight='700' >
-            {props.name}:
+
+            {/* {props.name}: */}
+            {props.comment}
           </Typography>
         }
-        secondary={
-          <React.Fragment>
-            <Typography
-              sx={{ display: 'inline'}}
-              component="span"
-              variant="body2"
-              color='white'
-            >
-              {props.comment}
-            </Typography>
-          </React.Fragment>
-        }
+        // secondary={
+        //   <React.Fragment>
+        //     <Typography
+        //       sx={{ display: 'inline'}}
+        //       component="span"
+        //       variant="body2"
+        //       color='white'
+        //     >
+        //       {props.comment}
+        //     </Typography>
+        //   </React.Fragment>
+        // }
       />
     </ListItem>
   )

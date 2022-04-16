@@ -23,18 +23,20 @@ const HomePage = () => {
 
   const navigate = useNavigate()
   const [listUniversities, setListUniversities] = useState <IUniversity[] | undefined> (undefined)
+  const [listEvents, setListEvents] = useState<any> (undefined)
   const [listRSO, setListRSO] = useState <IUniversity[] | undefined> (undefined)
 
-  let eventList = eventData?.map((data, index) => {
+  let eventList = listEvents?.map((data:any, index:any) => {
+
     return <EventContainer
       key={index}
-      eventLogo={data.eventLogo}
-      eventOrg={data.eventOrg}
-      eventImage={data.eventImage}
-      eventTitle={data.eventTitle}
-      eventDescription={data.eventDescription}
-      eventTime={data.eventTime}
-      eventDate={data.eventDate}
+      eventLogo={`UCF`}
+      eventOrg={`UCF`}
+      eventImage={eventData[0].eventImage}
+      eventTitle={data.name}
+      eventDescription={data.description}
+      eventTime={'9 am'}
+      eventDate={'03/04/22'}
       eventIndex={index}
     />
   })
@@ -87,15 +89,17 @@ const HomePage = () => {
     setListUniversities(universities)
   }
 
-  const getRSO = async () => {
-    const response = await fetch(url)
-    const RSO = await response.json()
-
+  const getEvents = async () => {
+    const response = await fetch('https://3cx545c2i0.execute-api.us-east-1.amazonaws.com/host?u_id=1')
+    const eventList = await response.json()
+    console.log(eventList)
+    setListEvents(eventList)
   }
+
 
   useEffect(() => {
     getUniversities()
-    getRSO()
+    getEvents()
   }, [])
 
   useEffect(()=> {
@@ -122,7 +126,6 @@ const HomePage = () => {
         {/* Group Column */}
         <Grid item xs={4} sm={4} md={4}>
           {displayListUniversities}
-          {displayListRSO}
         </Grid>
 
       </Grid>
